@@ -8,17 +8,21 @@ public class Lib_Dialog {
 
     private static final int ENDE = 6;
     private int option = -1;
-    private Dialog dialog;
+
     private static Scanner input;
+    private static int optioncounter;
 
     /**
      * Eigentliche Startmethode
      */
 
-    public void start(ArrayList<String> menue, Object o) throws ClassNotFoundException, NoSuchMethodException,
+    public void start(ArrayList<String> menue, String className) throws ClassNotFoundException, NoSuchMethodException,
             IllegalAccessException, InvocationTargetException, InstantiationException {
-        dialog = new Dialog();
+
         input = new Scanner(System.in);
+
+        Class<?> cls = Class.forName(className);
+        Object o = cls.getDeclaredConstructor().newInstance();
 
         while (option != ENDE) {
             try {
@@ -35,10 +39,10 @@ public class Lib_Dialog {
 
     }
 
-    public static <T> void printMenue(ArrayList<T> arraylist) {
+    public static <T> int printMenue(ArrayList<T> arraylist) {
 
         StringBuilder sb = new StringBuilder();
-        int optioncounter = 0;
+        optioncounter = 0;
 
         for (T string : arraylist) {
 
@@ -47,6 +51,7 @@ public class Lib_Dialog {
 
         }
         System.out.println(sb);
+        return optioncounter;
 
     }
 
@@ -61,8 +66,6 @@ public class Lib_Dialog {
 
         Method method = Dialog.class.getDeclaredMethod(Lib_String.RemoveAllWhitespaces(menue.get(option - 1)));
         method.invoke(o);
-
-        // TODO: Fix problem with no accesable ArrayLists
     }
 
 }
