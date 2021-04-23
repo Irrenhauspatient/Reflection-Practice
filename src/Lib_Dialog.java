@@ -15,27 +15,24 @@ public class Lib_Dialog {
      * Eigentliche Startmethode
      */
 
-    public void start(ArrayList<String> menue) throws ClassNotFoundException, NoSuchMethodException,
+    public void start(ArrayList<String> menue, Object o) throws ClassNotFoundException, NoSuchMethodException,
             IllegalAccessException, InvocationTargetException, InstantiationException {
         dialog = new Dialog();
         input = new Scanner(System.in);
-        Class<?> cls = Class.forName("Dialog");
-        Object o = cls.getDeclaredConstructor().newInstance();
 
         while (option != ENDE) {
             try {
                 printMenue(menue);
                 option = chooseOption();
                 ausfuehrenFunktion(menue, option, o);
-            } catch (IllegalArgumentException msg) {
-                System.out.println("\n" + msg);
             } catch (InputMismatchException msg) {
                 System.out.println("\n" + msg + ": Kein korrekter Wert");
                 input.nextLine();
-            } catch (Exception msg) {
-                msg.printStackTrace();
+            } catch (Exception e) {
+                System.out.print(e.getCause());
             }
         }
+
     }
 
     public static <T> void printMenue(ArrayList<T> arraylist) {

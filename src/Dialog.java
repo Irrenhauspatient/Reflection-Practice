@@ -21,13 +21,11 @@ public class Dialog {
 
     }
 
-    public void start() {
-
-    }
-
     public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, NoSuchMethodException,
             InvocationTargetException, InstantiationException {
 
+        Class<?> cls = Dialog.class;
+        Object o = cls.getDeclaredConstructor().newInstance();
         ArrayList<String> menue = new ArrayList<String>();
 
         menue.add("Mitarbeiter anlegen");
@@ -37,7 +35,7 @@ public class Dialog {
         menue.add("Anzahl der reservierungen anzeigen");
         menue.add("Ende");
 
-        new Lib_Dialog().start(menue);
+        new Lib_Dialog().start(menue, o);
 
     }
 
