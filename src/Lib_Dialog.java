@@ -29,7 +29,7 @@ public class Lib_Dialog {
                 System.out.println("\n" + msg + ": Kein korrekter Wert");
                 input.nextLine();
             } catch (Exception e) {
-                System.out.print(e.getCause());
+                System.out.println(e.getCause());
             }
         }
 
