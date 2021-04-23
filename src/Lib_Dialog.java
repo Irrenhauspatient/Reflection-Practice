@@ -64,7 +64,7 @@ public class Lib_Dialog {
     public static void ausfuehrenFunktion(ArrayList<String> menue, int option, Object o)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
-        Method method = Dialog.class.getDeclaredMethod(Lib_String.RemoveAllWhitespaces(menue.get(option - 1)));
+        Method method = o.getClass().getDeclaredMethod(Lib_String.RemoveAllWhitespaces(menue.get(option - 1)));
         method.invoke(o);
     }
 
